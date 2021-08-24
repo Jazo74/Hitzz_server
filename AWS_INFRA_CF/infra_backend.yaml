@@ -1,31 +1,54 @@
+Parameters:
+  AppName:
+    Description: The short name of the application
+    Type: String
+    MinLength: '5'
+    MaxLength: '15'
+  VpcCIDR:
+    Description: The IP address range of the VPC
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 10.0.0.0/26
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  SubnetCIDR:
+    Description: The IP address range of the Subnet
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 10.0.0.0/28
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+
 Resources:
 
   VPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: 10.0.0.0/26
+      CidrBlock: !Ref VpcCIDR
       EnableDnsSupport: true
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: VPC_Hitzz
+          Value: !Sub ${AppName}_VPC
   
   Subnet:
     Type: AWS::EC2::Subnet
     Properties:
-      CidrBlock: 10.0.0.0/28
+      CidrBlock: !Ref SubnetCIDR
       VpcId: !Ref VPC
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: Subnet_Hitzz
+          Value: !Sub ${AppName}_Subnet
   
   IGW:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
         - Key: Name
-          Value: IGW_Hitzz
+          Value: !Sub ${AppName}_IGW
 
   AttachmentIGW:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -39,7 +62,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: RouteTable_Hitzz
+          Value: !Sub ${AppName}_RouteTable
 
   RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -66,7 +89,7 @@ Resources:
       IamInstanceProfile: !Ref ManagedInstanceProfile
       Tags : 
           - Key: "Name"
-            Value: "HitzzBackend"
+            Value: !Sub ${AppName}_Server
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
