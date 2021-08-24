@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    tools {nodejs "NodeJS_15_8"}
+    
     stages {
         stage("cleaning") {
             steps {
@@ -9,7 +11,7 @@ pipeline {
         }
         stage("cloning") {
             steps {
-                sh "git clone https://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@github.com/Jazo74/Hitzz_server.git"
+                sh "git clone https://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@github.com/Jazo74/Hitzz_server.git"
             }
         }
         stage("build step") {
