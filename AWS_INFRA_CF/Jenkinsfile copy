@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage("installing_docker") {
+            steps {
+                sh "aws ssm send-command --document-name "AWS-RunShellScript" --targets "Key=InstanceIds,Values=i-06906580490c02b8d" --cli-input-json file://pre_installing.json"
+            }
+        }
+    }
+}

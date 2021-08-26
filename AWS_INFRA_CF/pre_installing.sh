@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Upgrade Ubuntu and installing docker
 aws ssm start-session --target "i-06906580490c02b8d"
 
