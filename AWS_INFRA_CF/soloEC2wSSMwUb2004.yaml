@@ -1,9 +1,11 @@
 Parameters:
+
   AppName:
     Description: The short name of the application
     Type: String
     MinLength: '5'
     MaxLength: '15'
+    Default: 'JZApp'
   VpcCIDR:
     Description: The IP address range of the VPC
     Type: String
@@ -20,6 +22,10 @@ Parameters:
     Default: 10.0.0.0/28
     AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  InstanceType:
+    Description: The type of type of the instance
+    Type: String
+    Default: 't2.micro'
 
 Resources:
 
@@ -82,7 +88,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-05f7491af5eef733a
-      InstanceType: t2.micro
+      InstanceType: !Ref InstanceType
       SubnetId: !Ref Subnet
       SecurityGroupIds:
         - !GetAtt VPC.DefaultSecurityGroup

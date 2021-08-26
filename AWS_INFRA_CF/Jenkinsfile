@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage("building_aws_infra") {
+            steps {
+                sh "aws cloudformation create-stack \ 
+                    --stack-name infra5 \
+                    --template-body file://infranew3.yaml \
+                    --capabilities CAPABILITY_NAMED_IAM"
+            }
+        }
+    }
+}
