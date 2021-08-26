@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("building_aws_infra") {
             steps {
-                sh "/usr/local/bin/aws cloudformation create-stack --stack-name webhitzz_infra --template-body file://soloEC2wSSMUb2004.yaml --capabilities CAPABILITY_NAMED_IAM"
+                sh "/usr/local/bin/aws cloudformation create-stack --stack-name webhitzz_infra --template-body file://soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM"
             }
         }
     }
