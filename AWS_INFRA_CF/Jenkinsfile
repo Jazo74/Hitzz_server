@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     parameters {
-        stringParam(defaultValue: "cc_eu_central_1", description: "AWS profile", name: "awsProfile")
+        string(defaultValue: "cc_eu_central_1", description: "AWS profile", name: "awsProfile")
     }
     
     stages {
