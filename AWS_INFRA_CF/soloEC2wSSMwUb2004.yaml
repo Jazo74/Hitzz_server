@@ -138,6 +138,6 @@ Resources:
 Outputs : 
   InstanceId : 
     Description: The Instance ID of the EC2 instance
-    Value : !Ref EC2Instance
+    Value : !Ref WebServer
     
     
