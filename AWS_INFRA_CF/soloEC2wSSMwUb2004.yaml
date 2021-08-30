@@ -136,5 +136,8 @@ Resources:
       InstanceProfileName: ManagedInstanceProfile 
 
 Outputs : 
-    PublicIP : 
-      Value : { "Fn::GetAtt" : [ "WebServer", "PublicIp" ]}
+  InstanceId : 
+    Description: The Instance ID of the EC2 instance
+    Value : !Ref Webserver
+    
+    
