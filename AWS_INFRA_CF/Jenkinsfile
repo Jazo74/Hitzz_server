@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("building_aws_infra") {
             steps {
-                sh "aws cloudformation create-stack --stack-name webhitzz_infra --template-body file://var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM"
+                sh "aws cloudformation create-stack --stack-name webhitzz_infra --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM"
             }
         }
     }
