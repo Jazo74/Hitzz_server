@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """ \
                     ${instanceId}=aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus \
-                    sleep 5
+                    sleep 5 \
                     echo ${instanceId}
                    """
             }
