@@ -12,5 +12,15 @@ pipeline {
                 sh "aws cloudformation create-stack --stack-name webhitz --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM --profile ${params.awsProfile}"
             }
         }
+        stage("checking_cf building") {
+            steps {
+                
+                sh ''' \
+                    status = '' \
+                    status = aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
+                    echo $status \
+                   '''
+            }
+        }
     }
 }
