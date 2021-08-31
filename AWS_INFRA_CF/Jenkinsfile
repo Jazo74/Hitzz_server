@@ -19,9 +19,9 @@ pipeline {
         stage("checking_cf_building") {
             steps {
                 sh """ \
-                    ${instanceId}=aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus \
-                    sleep 5 \
-                    echo ${instanceId}
+                    instanceId=${instanceId} \
+                    $instanceId=aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus \
+                    echo $instanceId
                    """
             }
         }
