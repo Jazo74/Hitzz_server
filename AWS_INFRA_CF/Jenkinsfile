@@ -18,12 +18,10 @@ pipeline {
         }
         stage("checking_cf_building") {
             steps {
-                foo = sh(
-                    returnStdout: true,
-                    script: """
-                            echo aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus > status
-                            """
-                )
+                sh """
+                    stat=echo aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus;
+                    echo \$stat; 
+                   """
             }
         }
     }
