@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """
                     echo ${instanceId} 
-                    ${instanceId}=echo aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus
+                    echo aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus > env.instanceId
                     echo ${instanceId} 
                    """
             }
