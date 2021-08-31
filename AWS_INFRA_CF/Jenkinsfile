@@ -15,12 +15,12 @@ pipeline {
         stage("checking_cf building") {
             steps {
                 
-                sh ''' \
+                sh """ \
                     status='' \
                     sleep 5 \
                     status=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
                     echo $status \
-                   '''
+                   """
             }
         }
     }
