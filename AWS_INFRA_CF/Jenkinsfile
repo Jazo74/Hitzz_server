@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """
                     stat=echo aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus;
-                    echo \$stat; 
+                    echo $stat; 
                    """
             }
         }
