@@ -15,7 +15,7 @@ pipeline {
         stage("checking_cf_building") {
             steps {
                 sh """ \
-                    aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus
+                    aws cloudformation describe-stacks --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus
                    """
             }
         }
