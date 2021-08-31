@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh """ \
                     sleep 5 \
-                    statuscf=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
+                    statuscf=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus
                    """
             }
         }
