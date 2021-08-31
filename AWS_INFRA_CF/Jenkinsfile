@@ -4,18 +4,19 @@ pipeline {
 
     parameters {
         string(defaultValue: "jenkinsAwsCcEUCentral1", description: "AWS profile", name: "awsProfile")
+        string(defaultValue: "webhitzz", description: "CF stack name", name: "stackName")
     }
     
     stages {
         stage("building_aws_infra") {
             steps {
-                sh "aws cloudformation create-stack --stack-name webhitz1 --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM --profile ${params.awsProfile}"
+                sh "aws cloudformation create-stack --stack-name ${params.stackName} --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM --profile ${params.awsProfile}"
             }
         }
         stage("checking_cf_building") {
             steps {
                 sh """ \
-                    aws cloudformation describe-stacks --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus
+                    aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus
                    """
             }
         }
