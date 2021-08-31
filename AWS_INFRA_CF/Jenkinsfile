@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        def instanceId = ""
+        def instanceId = "alma"
     }
     parameters {
         string(defaultValue: "jenkinsAwsCcEUCentral1", description: "AWS profile", name: "awsProfile")
@@ -19,9 +19,9 @@ pipeline {
         stage("checking_cf_building") {
             steps {
                 sh """ \
-                    instanceId=${instanceId} \
-                    $instanceId=aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus \
-                    echo $instanceId
+                    echo ${instanceId} \
+                    aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus \
+                    echo "korte"
                    """
             }
         }
