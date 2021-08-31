@@ -16,8 +16,9 @@ pipeline {
             steps {
                 
                 sh ''' \
-                    status = '' \
-                    status = aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
+                    status='' \
+                    sleep 5 \
+                    status=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
                     echo $status \
                    '''
             }
