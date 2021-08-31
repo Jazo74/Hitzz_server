@@ -9,18 +9,18 @@ pipeline {
     stages {
         stage("building_aws_infra") {
             steps {
-                sh "aws cloudformation create-stack --stack-name webhitz1 --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM --profile ${params.awsProfile}"
+                sh "aws cloudformation create-stack --stack-name webhitz2 --template-body file:///var/jenkins_home/workspace/Webhitzz_infra/AWS_INFRA_CF/soloEC2wSSMwUb2004.yaml --capabilities CAPABILITY_NAMED_IAM --profile ${params.awsProfile}"
             }
         }
         stage("checking_cf_building") {
             steps {
                 sh """ \
                     echo "startscript" \
-                    status="zero" \
-                    echo $status
+                    statuscf="zero" \
+                    echo $statuscf
                     sleep 5 \
-                    status=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
-                    echo $status \
+                    statuscf=aws cloudformation describe-stack --stack-name webhitz --profile ${params.awsProfile} | grep StackStatus \
+                    echo $statuscf \
                    """
             }
         }
