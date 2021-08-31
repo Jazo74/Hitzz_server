@@ -18,7 +18,7 @@ pipeline {
         }
         stage("checking_cf_building") {
             steps {
-                sh """ \
+                sh """
                     echo ${instanceId} 
                     aws cloudformation describe-stacks --stack-name ${params.stackName} --profile ${params.awsProfile} | grep StackStatus
                     echo "korte"
